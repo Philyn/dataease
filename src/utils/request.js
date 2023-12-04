@@ -42,7 +42,9 @@ const getTimeOut = () => {
   xhr.send()
   return time
 }
-const time = getTimeOut()
+// const time = getTimeOut()
+
+const time = 10000
 let service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
   timeout: time ? time * 1000 : 10000

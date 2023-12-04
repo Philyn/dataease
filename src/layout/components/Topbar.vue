@@ -1,10 +1,11 @@
 <template>
   <div class="top-nav">
-    <!-- <div
+    <div
       v-loading="!axiosFinished"
       class="log"
     >
-      <svg-icon
+      可视化素材库子系统
+      <!-- <svg-icon
         v-if="!logoUrl && axiosFinished"
         icon-class="DataEase"
         custom-class="top-nav-logo-icon"
@@ -15,8 +16,8 @@
         width="140"
         alt=""
         style="padding-top: 10px;"
-      >
-    </div> -->
+      > -->
+    </div>
     <el-menu
       class="de-top-menu"
       mode="horizontal"

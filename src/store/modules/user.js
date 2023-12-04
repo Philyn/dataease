@@ -141,15 +141,16 @@ const actions = {
 
   getUI({ commit, state }) {
     return new Promise((resolve, reject) => {
-      getUIinfo().then(response => {
-        const { data } = response
-        const uiInfo = format(data)
-        commit('SET_UI_INFO', uiInfo)
-        setSysUI(uiInfo)
-        resolve(uiInfo)
-      }).catch(error => {
-        reject(error)
-      })
+      resolve()
+      // getUIinfo().then(response => {
+      //   const { data } = response
+      //   const uiInfo = format(data)
+      //   commit('SET_UI_INFO', uiInfo)
+      //   setSysUI(uiInfo)
+      //   resolve(uiInfo)
+      // }).catch(error => {
+      //   reject(error)
+      // })
     })
   },
 

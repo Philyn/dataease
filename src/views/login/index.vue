@@ -474,31 +474,32 @@ export default {
     },
 
     handleLogin() {
+      this.$router.push({ path: '/' })
       this.initCache()
       this.clearOidcMsg()
       this.clearWecomMsg()
       this.clearDingtalkMsg()
       this.clearLarkMsg()
       this.clearLarksuiteMsg()
-      this.$refs.loginForm.validate(valid => {
-        if (valid) {
-          this.loading = true
-          const user = {
-            username: encrypt(this.loginForm.username),
-            password: encrypt(this.loginForm.password),
-            loginType: this.loginForm.loginType
-          }
-          this.$store.dispatch('user/login', user).then(() => {
-            this.$router.push({ path: this.redirect || '/' })
-            this.loading = false
-          }).catch((e) => {
-            this.loading = false
-            e?.response?.data?.message?.startsWith('MultiLoginError') && this.showMessage()
-          })
-        } else {
-          return false
-        }
-      })
+      // this.$refs.loginForm.validate(valid => {
+      //   if (valid) {
+      //     this.loading = true
+      //     const user = {
+      //       username: encrypt(this.loginForm.username),
+      //       password: encrypt(this.loginForm.password),
+      //       loginType: this.loginForm.loginType
+      //     }
+      //     this.$store.dispatch('user/login', user).then(() => {
+      //       this.$router.push({ path: this.redirect || '/' })
+      //       this.loading = false
+      //     }).catch((e) => {
+      //       this.loading = false
+      //       e?.response?.data?.message?.startsWith('MultiLoginError') && this.showMessage()
+      //     })
+      //   } else {
+      //     return false
+      //   }
+      // })
     },
     showMessage() {
       showMultiLoginMsg()

@@ -30,7 +30,7 @@ NProgress.configure({
   showSpinner: false
 }) // NProgress Configuration
 
-const whiteList = ['/login', '/401', '/404', '/delink', '/nolic', '/de-auto-login'] // no redirect whitelist
+const whiteList = ['/login', '/401', '/404', '/delink', '/nolic', '/de-auto-login','/panel','/'] // no redirect whitelist
 
 const routeBefore = (callBack) => {
   let uiInfo = getSysUI()
@@ -244,29 +244,29 @@ const filterRouter = routers => {
   })
 }
 const hasPermission = (router, user_permissions) => {
-  // 判断是否有符合权限 eg. user:read,user:delete
-  if (router.permission && router.permission.indexOf(',') > -1) {
-    const permissions = router.permission.split(',')
-    const permissionsFilter = permissions.filter(permission => {
-      return user_permissions.includes(permission)
-    })
-    if (!permissionsFilter || permissionsFilter.length === 0) {
-      return false
-    }
-  } else if (router.permission && !user_permissions.includes(router.permission)) {
-    // 菜单要求权限 但是当前用户权限没有包含菜单权限
-    return false
-  }
+  // // 判断是否有符合权限 eg. user:read,user:delete
+  // if (router.permission && router.permission.indexOf(',') > -1) {
+  //   const permissions = router.permission.split(',')
+  //   const permissionsFilter = permissions.filter(permission => {
+  //     return user_permissions.includes(permission)
+  //   })
+  //   if (!permissionsFilter || permissionsFilter.length === 0) {
+  //     return false
+  //   }
+  // } else if (router.permission && !user_permissions.includes(router.permission)) {
+  //   // 菜单要求权限 但是当前用户权限没有包含菜单权限
+  //   return false
+  // }
 
-  if (!filterLic(router)) {
-    return false
-  }
-  // 如果有字菜单 则 判断是否满足 ‘任意一个子菜单有权限’
-  if (router.children && router.children.length) {
-    const permissionChildren = router.children.filter(item => hasPermission(item, user_permissions))
-    router.children = permissionChildren
-    return router.children.length > 0
-  }
+  // if (!filterLic(router)) {
+  //   return false
+  // }
+  // // 如果有字菜单 则 判断是否满足 ‘任意一个子菜单有权限’
+  // if (router.children && router.children.length) {
+  //   const permissionChildren = router.children.filter(item => hasPermission(item, user_permissions))
+  //   router.children = permissionChildren
+  //   return router.children.length > 0
+  // }
   return true
 }
 const filterLic = (router) => {
